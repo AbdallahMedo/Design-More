@@ -1,0 +1,8 @@
+namespace MechanicalDesigns.Application.Orders;
+public sealed record OrderCreateRequest(string CustomerName,string PhoneNumber,string? WhatsAppNumber,string Address,string City,string Governorate,string? CustomerNotes);
+public sealed record OrderItemResponse(Guid Id,Guid ProductId,string ProductTitleAr,string ProductTitleEn,decimal UnitPrice,int Quantity,decimal TotalPrice,string Status);
+public sealed record OrderResponse(Guid Id,string OrderNumber,decimal Subtotal,decimal ShippingCost,decimal Total,string PaymentStatus,string OrderStatus,DateTimeOffset CreatedAt,IReadOnlyList<OrderItemResponse> Items,string? CustomerName=null,string? PhoneNumber=null,string? WhatsAppNumber=null,string? Address=null,string? City=null,string? Governorate=null,string? CustomerNotes=null,Guid? UserId=null);
+public sealed record OrderStatusUpdateRequest(string Status,string? Notes);
+public sealed record PaymentStatusUpdateRequest(string Status);
+public sealed record OrderItemStatusUpdateRequest(string Status);
+public interface IOrderService{Task<OrderResponse>CreateAsync(Guid userId,OrderCreateRequest request,CancellationToken ct);Task<IReadOnlyList<OrderResponse>>GetMineAsync(Guid userId,CancellationToken ct);Task<OrderResponse?>GetMineAsync(Guid userId,Guid id,CancellationToken ct);Task<IReadOnlyList<OrderResponse>>GetAdminAsync(string? status,CancellationToken ct);Task<OrderResponse?>GetAdminAsync(Guid id,CancellationToken ct);Task<bool>SetStatusAsync(Guid id,Guid adminId,OrderStatusUpdateRequest r,CancellationToken ct);Task<bool>SetPaymentStatusAsync(Guid id,PaymentStatusUpdateRequest r,CancellationToken ct);Task<bool>SetItemStatusAsync(Guid orderId,Guid itemId,OrderItemStatusUpdateRequest r,CancellationToken ct);}

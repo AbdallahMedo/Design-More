@@ -1,0 +1,31 @@
+# Build outputs
+bin/
+obj/
+
+# IDE and user-specific files
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Local secrets and environment files
+.env
+.env.*
+secrets.json
+appsettings.Local.json
+
+# Node utility dependencies (not part of this .NET solution)
+node_modules/
+
+# Local documentation, testing data, and agent settings
+/docs/
+/postman/
+/DEPLOYMENT_STEPS.local.md
+/.agents/
+/.codex/
+/artifacts/
+**/wwwroot/uploads/
+*.log
+*.pfx
+*.pem
+*.key

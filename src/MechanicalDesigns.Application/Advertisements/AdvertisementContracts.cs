@@ -1,0 +1,5 @@
+namespace MechanicalDesigns.Application.Advertisements;
+public sealed record AdvertisementRequest(string TitleAr,string TitleEn,string ImageUrl,string? MobileImageUrl,string? LinkUrl,int DisplayOrder,DateTimeOffset? StartDate,DateTimeOffset? EndDate);
+public sealed record AdvertisementStatusRequest(bool IsActive);
+public sealed record AdvertisementResponse(Guid Id,string TitleAr,string TitleEn,string ImageUrl,string? MobileImageUrl,string? LinkUrl,int DisplayOrder,DateTimeOffset? StartDate,DateTimeOffset? EndDate,bool IsActive);
+public interface IAdvertisementService{Task<IReadOnlyList<AdvertisementResponse>>PublicAsync(CancellationToken ct);Task<IReadOnlyList<AdvertisementResponse>>AdminAsync(CancellationToken ct);Task<AdvertisementResponse>CreateAsync(AdvertisementRequest r,CancellationToken ct);Task<AdvertisementResponse?>UpdateAsync(Guid id,AdvertisementRequest r,CancellationToken ct);Task<bool>StatusAsync(Guid id,bool active,CancellationToken ct);Task<bool>DeleteAsync(Guid id,CancellationToken ct);}

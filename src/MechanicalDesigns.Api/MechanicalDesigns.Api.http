@@ -1,0 +1,6 @@
+@MechanicalDesigns.Api_HostAddress = http://localhost:5210
+
+GET {{MechanicalDesigns.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

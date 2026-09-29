@@ -1,0 +1,13 @@
+**
+!src/
+!src/**
+!Dockerfile
+**/bin/
+**/obj/
+**/wwwroot/uploads/
+**/.env*
+**/secrets.json
+**/appsettings.Local.json
+**/*.pfx
+**/*.pem
+**/*.key
